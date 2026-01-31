@@ -1,4 +1,13 @@
-// SPDX-License-Identifier: MIT
+// HARDCODE addresses (Drosera requirement)
+address public constant LIQUIDITY_POOL = 0xFba1bc0E3d54D71Ba55da7C03c7f63D4641921B1;
+
+// Zero-argument constructor
+constructor() {}
+
+function collect() external view override returns (bytes memory) {
+    uint256 bal = IERC20(LIQUIDITY_POOL).balanceOf(LIQUIDITY_POOL);
+    return abi.encode(bal); // Return uint256, not struct
+}// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
 import "@drosera-contracts/interfaces/ITrap.sol";
@@ -16,11 +25,11 @@ contract LiquidityFluctuationTrap is ITrap {
     }
     
     constructor() {}
-    
+
     function collect() external view override returns (bytes memory) {
-        uint256 bal = IERC20(LIQUIDITY_POOL).balanceOf(LIQUIDITY_POOL);
-        return abi.encode(CollectOutput({liquidityBalance: bal}));
-    }
+    uint256 bal = IERC20(LIQUIDITY_POOL).balanceOf(LIQUIDITY_POOL);
+    return abi.encode(bal); // Return uint256, not struct
+}
     
     function shouldRespond(bytes[] calldata data) external pure override returns (bool, bytes memory) {
     require(data.length > 0, "No data provided");
