@@ -23,15 +23,17 @@ contract LiquidityFluctuationTrap is ITrap {
     }
     
     function shouldRespond(bytes[] calldata data) external pure override returns (bool, bytes memory) {
-        require(data.length > 0, "No data provided");
-        
-        CollectOutput memory current = abi.decode(data[0], (CollectOutput));
-        CollectOutput memory past = abi.decode(data[data.length - 1], (CollectOutput));
-        
-        if (past.liquidityBalance < THRESHOLD) {
-            return (true, abi.encode(current.liquidityBalance));
-        }
-        
-        return (false, bytes(""));
+    require(data.length > 0, "No data provided");
+    
+    // Decode as uint256 (not struct)
+    uint256 current = abi.decode(data[0], (uint256));
+    uint256 past = abi.decode(data[data.length - 1], (uint256));
+    
+    // Rising-edge detection
+    if (past < THRESHOLD) {
+        return (true, abi.encode(current)); // Encode uint256, not struct
     }
+    
+    return (false, bytes(""));
+}
 }
