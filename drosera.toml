@@ -5,10 +5,11 @@ drosera_address = "0x91cB447BaFc6e0EA0F4Fe056F5a9b1F14bb06e5D"
 
 [traps.liquidity_fluctuation_trap]
 path = "out/LiquidityFluctuationTrap.sol/LiquidityFluctuationTrap.json"
-response_contract = "0x07A093Cac7b8728Ddf623eEd751B34b6C2a00A44"
+response_contract = "0x07A093Cac7b8728Ddf623eEd751B34b6C2a00A44" 
 response_function = "respondCallback(uint256)"
 cooldown_period_blocks = 33
+min_number_of_operators = 1
+max_number_of_operators = 2
 block_sample_size = 10
 private_trap = true
-whitelist = ["0x8f624cea36cc8be59a5b6b3de52a0c3a4a6525072b9a346537695a3a39963eb0"]
-address = "0x07A093Cac7b8728Ddf623eEd751B34b6C2a00A44"
+whitelist = ["0x07A093Cac7b8728Ddf623eEd751B34b6C2a00A44"] 
