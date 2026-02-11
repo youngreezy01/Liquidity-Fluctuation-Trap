@@ -36,10 +36,10 @@ contract LiquidityFluctuationTrap is ITrap {
         
         uint256 current = abi.decode(data[0], (uint256));
         
+
         if (data.length < 2 || data[1].length != 32) {
-            if (current < THRESHOLD) return (true, abi.encode(current));
-            return (false, bytes(""));
-        }
+        return (false, bytes("")); // ✅ CORRECT - need history for falling edge
+            }
         
         uint256 past = abi.decode(data[1], (uint256));
         if (past >= THRESHOLD && current < THRESHOLD) return (true, abi.encode(current));
