@@ -29,7 +29,7 @@ contract LiquidityFluctuationTrapTest is Test {
     function testBasicLogic() public {
         // Test shouldRespond with mock data
         bytes[] memory data = new bytes[](2);
-        data[1] = abi.encode(0.5e18); // Past: below threshold
+        data[1] = abi.encode(1.5e18); // Past: below threshold
         data[0] = abi.encode(0.8e18); // Current: below threshold
         
         (bool shouldTrigger, bytes memory response) = trap.shouldRespond(data);
