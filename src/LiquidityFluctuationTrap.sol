@@ -38,7 +38,7 @@ contract LiquidityFluctuationTrap is ITrap {
         
 
         if (data.length < 2 || data[1].length != 32) {
-        return (false, bytes("")); // ✅ CORRECT - need history for falling edge
+        return (false, bytes("")); //
             }
         
         uint256 past = abi.decode(data[1], (uint256));
